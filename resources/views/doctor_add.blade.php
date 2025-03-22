@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+     <!-- Corrected path -->
     <title>Dental Clinic Mangement</title>
 </head>
 
@@ -161,6 +163,7 @@
         transform: rotate(45deg);
         transition: all .2s ease-out;
     }
+
 </style>
 <body>
 
@@ -172,39 +175,48 @@
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">
-                        <span>Dental Clinic</span>
+                        <span>MediCare</span>
                     </a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" hx-get="/mainpage" hx-target=".main" hx-swap="innerHTML">
+                    <a href="{{ route('mainpage') }}"
+                       class="sidebar-link"
+                       hx-boost="true"
+                       hx-push-url="true">
                         <i class="ri-home-8-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
-                     data-bs-target="#appointment" aria-expanded="false" aria-controls="appointment">
-                     <i class="ri-calendar-todo-fill"></i>
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                       data-bs-target="#appointment" aria-expanded="false" aria-controls="appointment">
+                        <i class="ri-calendar-todo-fill"></i>
                         <span>Appointment</span>
-                    </a> 
+                    </a>
                     <ul id="appointment" class="sidebar-dropdown list-unstyled collapse"
-                         data-bs-parent="#sidebar">
+                        data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/appointmentlist" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-notification-2-fill"></i>Appointment List
+                            <a href="{{ route('appointmentlist') }}"
+                               class="sidebar-link"
+                               hx-boost="true"
+                               hx-push-url="true">
+                                <i class="ri-notification-2-fill"></i> Appointment List
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/appointmentrecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-folder-history-fill"></i>Appointment Record
+                            <a href="{{route('appointmentrecord')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                                <i class="ri-folder-history-fill"></i> Appointment Record
                             </a>
                         </li>
-                    </ul> 
+                    </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
+                    <a href="" class="sidebar-link has-dropdwon collapsed"data-bs-toggle="collapse"
                     data-bs-target="#doctor" aria-expanded="false" aria-controls="doctor">
                     <i class="ri-empathize-fill"></i>
                         <span>Doctor</span>
@@ -212,24 +224,30 @@
                     <ul id="doctor" class="sidebar-dropdown list-unstyled collapse"
                          data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/DoctorList" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-user-shared-line"></i>Doctor List
-                            </a>
+                            <a href="{{route('DoctorList')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-user-shared-line"></i>Doctor List</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/AddDoctor" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-user-add-fill"></i>Add Doctor
-                            </a>
+                            <a href="{{route('AddDoctor')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-user-add-fill"></i>Add Doctor</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/DoctorRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-id-card-fill"></i>Doctor Record
-                            </a>
+                            <a href="{{route('DoctorRecord')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-id-card-fill"></i>Doctor Record</a>
                         </li>
                     </ul>    
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
+                    <a href="" class="sidebar-link has-dropdwon collapsed"data-bs-toggle="collapse"
                     data-bs-target="#patient" aria-expanded="false" aria-controls="patient">
                     <i class="ri-user-voice-fill"></i>
                         <span>Patient</span>
@@ -237,36 +255,39 @@
                     <ul id="patient" class="sidebar-dropdown list-unstyled collapse"
                          data-bs-parent="#sidebar">
                          <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/AddPatient" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-user-add-fill"></i>Add Patient
-                            </a>
+                            <a href="{{route('AddPatient')}}"
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-user-add-fill"></i>Add Patient</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/PatientList" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-account-circle-fill"></i>Patient List
-                            </a>
+                            <a href="{{route('PatientList')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-account-circle-fill"></i>Patient List</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/PatientRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-account-box-line"></i>Patient Record
-                            </a>
+                            <a href="{{route('PatientRecord')}}"
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="PatientRecord">
+                            <i class="ri-account-box-line"></i>Patient Record</a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" hx-get="/Services" hx-target=".main" hx-swap="innerHTML">
-                        <i class="ri-tooth-line"></i>
-                        <span>Services</span>
+                    <a href="{{route('Prescription')}}" 
+                    class="sidebar-link"
+                    hx-boost="true"
+                    hx-push-url="true">
+                    <i class="fa-solid fa-file-medical"></i>
+                    <span>Prescription</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" hx-get="/Prescription" hx-target=".main" hx-swap="innerHTML">
-                        <i class="fa-solid fa-file-medical"></i>
-                        <span>Prescription</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
+                    <a href="" class="sidebar-link has-dropdwon collapsed"data-bs-toggle="collapse"
                     data-bs-target="#payment" aria-expanded="false" aria-controls="payment">
                     <i class="ri-shake-hands-line"></i>
                         <span>Transactions</span>
@@ -274,50 +295,31 @@
                     <ul id="payment" class="sidebar-dropdown list-unstyled collapse"
                          data-bs-parent="#sidebar">
                          <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/TransactionList" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-list-view"></i>Transaction List
-                            </a>
+                            <a href="{{route('TransactionList')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-list-view"></i>Transaction List</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/Payment" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-money-dollar-circle-fill"></i>Payment
-                            </a>
+                            <a href="{{route('Payment')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-money-dollar-circle-fill"></i>Payment</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/TransactionRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-folder-history-fill"></i>Transaction Records
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
-                    data-bs-target="#report" aria-expanded="false" aria-controls="report">
-                    <i class="ri-file-list-3-fill"></i>
-                        <span>Daily Inventory</span>
-                    </a>
-                    <ul id="report" class="sidebar-dropdown list-unstyled collapse"
-                         data-bs-parent="#sidebar">
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/Equipment" hx-target=".main" hx-swap="innerHTML">
-                                <i class="fa-solid fa-magnifying-glass"></i>Equipments
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/AddStocks" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-function-add-fill"></i>Add Stocks
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/InventoryRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-folder-chart-line"></i>Inventory Records
-                            </a>
+                            <a href="{{route('TransactionRecord')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-folder-history-fill"></i>Transaction Records</a>
                         </li>
                     </ul>
                 </li>
             </ul> 
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link" hx-get="/logout" hx-target=".main" hx-swap="innerHTML">
+                <a href="#" class="sidebar-link">
                     <i class="ri-logout-box-line"></i>
                     <span>Logout</span>
                 </a>
@@ -331,93 +333,99 @@
             <div class="border border-dark"></div>
             <div class="row mt-3">
                 <div class="card p-3 border border-dark">
-                    <div class="row">
-                        <div class="col-md-3 mt-3">
-                            <a href="AddDoctor.html" class="text-decoration-none text-dark fw-bold hover-effect">
-                                <h3 class="lead">Doctor Details</h3>
-                            </a>
+                    <form hx-post="{{ route('StoreDoctor') }}" hx-target="body" hx-swap="outerHTML">
+                        @csrf
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="row mt-2">
+                            <h1>Doctor Profile</h1>
                         </div>
-                        <div class="col-md-3 mt-3">
-                            <a href="doctorProfile.html" class="text-decoration-none text-dark fw-bold hover-effect">
-                                <h3 class="lead">Doctor Profile</h3>
-                            </a>
-                        </div>
-                        <div class="col-md-3 mt-3">
-                            <a href="doctorAvailability.html" class="text-decoration-none text-dark fw-bold hover-effect">
-                                <h3 class="lead">Doctor Availability</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="border border-dark"></div>
-                        <form action="">
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control mt-2" name="firstname" id="firstname" placeholder="First Name">
-                                </div>
-                                <div class="col-md-3">
-                                    <label >Last Name</label>
-                                    <input type="text" class="form-control mt-2" name="lastname" id="lastname" placeholder="Last Name">
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Age</label>
-                                    <input type="number" class="form-control mt-2" name="age" id="age" placeholder="age">
-                                </div>
-                                <div class="col-md-3">
-                                    <Label for="gender">Gender</Label>
-                                    <select name="gender" class="form-control mt-2" id="gender">
-                                        <option value="" selected disabled>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
+                        <div class="row">
                                 <div class="col-md-3 mt-3">
-                                    <label>Contact No.</label>
-                                    <input type="text" class="form-control mt-2" name="contact" id="contact" placeholder="Contact No.">
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control mt-2" name="email" id="email" placeholder="Email">
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>Marital Status</label>
-                                    <select name="marital" class="form-control mt-2" id="marital">
-                                        <option value="" selected disabled>Status   </option>
-                                        <option value="single">Single</option>
-                                        <option value="married">Married</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>Street</label>
-                                    <input type="text" class="form-control mt-2" name="street" id="street" placeholder="Street">
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>City</label>
-                                    <input type="text" class="form-control mt-2" name="city" id="city" placeholder="City">
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control mt-2" name="country" id="country" placeholder="Country">
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>Postal Code</label>
-                                    <input type="text" class="form-control mt-2" name="postal" id="postal" placeholder="Postal Code">
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>Specialization</label>
-                                    <input type="text" class="form-control mt-2" name="specialization" id="specialization" placeholder="Specialization">
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <label>Qualification</label>
-                                    <input type="text" class="form-control mt-2" name="qualification" id="qualification" placeholder="Qualification">
+                                    <label for="imageUpload" class="upload-box" id="drop-area" >
+                                        <img id="imagePreview"  alt="Upload Profile" width="100" height="auto">
+                                    </label>
+                                    <input type="file"  class="form-control mt-2" accept="image/*" name="file_image" onchange="previewImage(event)">
                                 </div>
                             </div>
-                        <div class="row mt-3 justify-content-end">
-                            <div class="col-md-2 mt-3 ">
-                                <button class="btn btn-sm btn-secondary">Clear</button>
-                                <button class="btn btn-sm btn-primary">Confirm</button>
+                                <div class="row mt-2">
+                                    <div class="col-md-4">
+                                        <label for="bio">Bio</label>
+                                        <textarea name="bio" id="bio" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="border border-dark mt-3"></div>
+                                <div class="row mt-2">
+                                    <h1>Doctor Details</h1>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3">
+                                        <label for="firstname">First Name:</label>
+                                        <input type="text" class="form-control mt-2" name="firstname" id="firstname" placeholder="First Name" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="lastname">Last Name:</label>
+                                        <input type="text" class="form-control mt-2" name="lastname" id="lastname" placeholder="Last Name" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="age">Age</label>
+                                        <input type="number" class="form-control mt-2" name="age" id="age" placeholder="Age" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <Label for="gender">Gender</Label>
+                                        <select name="gender" class="form-control mt-2" id="gender" required>
+                                            <option value="" selected disabled>Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="contact">Contact No.</label>
+                                        <input type="text" class="form-control mt-2" name="contact" id="contact" placeholder="Contact No." required>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control mt-2" name="email" id="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="marital">Marital Status</label>
+                                        <select name="marital" class="form-control mt-2" id="marital">
+                                            <option value="" selected disabled>Status   </option>
+                                            <option value="single">Single</option>
+                                            <option value="married">Married</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="street">Street</label>
+                                        <input type="text" class="form-control mt-2" name="street" id="street" placeholder="Street">
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control mt-2" name="city" id="city" placeholder="City">
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="country">Country</label>
+                                        <input type="text" class="form-control mt-2" name="country" id="country" placeholder="Country">
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="postal">Postal Code</label>
+                                        <input type="text" class="form-control mt-2" name="postal" id="postal" placeholder="Postal Code">
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="specialization">Specialization</label>
+                                        <input type="text" class="form-control mt-2" name="specialization" id="specialization" placeholder="Specialization">
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <label for="qualification">Qualification</label>
+                                        <input type="text" class="form-control mt-2" name="qualification" id="qualification" placeholder="Qualification">
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end mt-3 p-2">
+                                    <div class="col-md-2">
+                                        <button type="reset" class="btn btn-sm btn-secondary">Clear</button>
+                                        <button type="submit" class="btn btn-sm btn-primary">Create Doctor</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -431,5 +439,38 @@
     toggleBtn.addEventListener('click', () => {
         sidebar.classList.toggle('expand');
     });
+
+    // Define toggleSidebar function
+    function toggleSidebar() {
+        sidebar.classList.toggle('expand');
+    }
+
+    // Initial binding
+    toggleSidebar();
+
+    // Rebind after HTMX updates
+    document.body.addEventListener('htmx:afterSwap', () => {
+        toggleSidebar();
+    });
+
+    function previewImage(event) {
+        const fileInput = event.target;
+
+        if (fileInput.files.length === 0) return;
+
+        const file = fileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const preview = document.getElementById("imagePreview");
+                preview.src = reader.result;
+                preview.style.display = "block"; // Show image preview
+                document.getElementById("drop-area").classList.add("has-image");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        fileInput.value = "";
+    }
 </script>
 </html>

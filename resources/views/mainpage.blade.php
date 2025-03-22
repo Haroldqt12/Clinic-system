@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kQGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Dental Clinic Mangement</title>
@@ -155,6 +155,7 @@
     }
 </style>
 <body>
+
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
@@ -163,39 +164,48 @@
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">
-                        <span>Dental Clinic</span>
+                        <span>MediCare</span>
                     </a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" hx-get="/mainpage" hx-target="body" hx-swap="innerHTML">
+                    <a href="{{ route('mainpage') }}"
+                       class="sidebar-link"
+                       hx-boost="true"
+                       hx-push-url="true">
                         <i class="ri-home-8-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
-                     data-bs-target="#appointment" aria-expanded="false" aria-controls="appointment">
-                     <i class="ri-calendar-todo-fill"></i>
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                       data-bs-target="#appointment" aria-expanded="false" aria-controls="appointment">
+                        <i class="ri-calendar-todo-fill"></i>
                         <span>Appointment</span>
-                    </a> 
+                    </a>
                     <ul id="appointment" class="sidebar-dropdown list-unstyled collapse"
-                         data-bs-parent="#sidebar">
+                        data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/appointmentlist" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-notification-2-fill"></i>Appointment List
+                            <a href="{{ route('appointmentlist') }}"
+                               class="sidebar-link"
+                               hx-boost="true"
+                               hx-push-url="true">
+                                <i class="ri-notification-2-fill"></i> Appointment List
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/appointmentrecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-folder-history-fill"></i>Appointment Record
+                            <a href="{{route('appointmentrecord')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                                <i class="ri-folder-history-fill"></i> Appointment Record
                             </a>
                         </li>
-                    </ul> 
+                    </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
+                    <a href="" class="sidebar-link has-dropdwon collapsed"data-bs-toggle="collapse"
                     data-bs-target="#doctor" aria-expanded="false" aria-controls="doctor">
                     <i class="ri-empathize-fill"></i>
                         <span>Doctor</span>
@@ -203,24 +213,30 @@
                     <ul id="doctor" class="sidebar-dropdown list-unstyled collapse"
                          data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/DoctorList" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-user-shared-line"></i>Doctor List
-                            </a>
+                            <a href="{{route('DoctorList')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-user-shared-line"></i>Doctor List</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/AddDoctor" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-user-add-fill"></i>Add Doctor
-                            </a>
+                            <a href="{{route('AddDoctor')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-user-add-fill"></i>Add Doctor</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/DoctorRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-id-card-fill"></i>Doctor Record
-                            </a>
+                            <a href="{{route('DoctorRecord')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-id-card-fill"></i>Doctor Record</a>
                         </li>
                     </ul>    
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
+                    <a href="" class="sidebar-link has-dropdwon collapsed"data-bs-toggle="collapse"
                     data-bs-target="#patient" aria-expanded="false" aria-controls="patient">
                     <i class="ri-user-voice-fill"></i>
                         <span>Patient</span>
@@ -228,36 +244,39 @@
                     <ul id="patient" class="sidebar-dropdown list-unstyled collapse"
                          data-bs-parent="#sidebar">
                          <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/AddPatient" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-user-add-fill"></i>Add Patient
-                            </a>
-                         </li>
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/PatientList" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-account-circle-fill"></i>Patient List
-                            </a>
-                         </li>
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/PatientRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-account-box-line"></i>Patient Record
-                            </a>
-                         </li>
+                            <a href="{{route('AddPatient')}}"
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-user-add-fill"></i>Add Patient</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('PatientList')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-account-circle-fill"></i>Patient List</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('PatientRecord')}}"
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="PatientRecord">
+                            <i class="ri-account-box-line"></i>Patient Record</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" hx-get="/Services" hx-target=".main" hx-swap="innerHTML">
-                        <i class="ri-tooth-line"></i>
-                        <span>Services</span>
+                    <a href="{{route('Prescription')}}" 
+                    class="sidebar-link"
+                    hx-boost="true"
+                    hx-push-url="true">
+                    <i class="fa-solid fa-file-medical"></i>
+                    <span>Prescription</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" hx-get="/Prescription" hx-target=".main" hx-swap="innerHTML">
-                        <i class="fa-solid fa-file-medical"></i>
-                        <span>Prescription</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
+                    <a href="" class="sidebar-link has-dropdwon collapsed"data-bs-toggle="collapse"
                     data-bs-target="#payment" aria-expanded="false" aria-controls="payment">
                     <i class="ri-shake-hands-line"></i>
                         <span>Transactions</span>
@@ -265,50 +284,31 @@
                     <ul id="payment" class="sidebar-dropdown list-unstyled collapse"
                          data-bs-parent="#sidebar">
                          <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/TransactionList" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-list-view"></i>Transaction List
-                            </a>
-                         </li>
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/Payment" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-money-dollar-circle-fill"></i>Payment
-                            </a>
-                         </li>
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/TransactionRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-folder-history-fill"></i>Transaction Records
-                            </a>
-                         </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdwon collapsed" data-bs-toggle="collapse"
-                    data-bs-target="#report" aria-expanded="false" aria-controls="report">
-                    <i class="ri-file-list-3-fill"></i>
-                        <span>Daily Inventory</span>
-                    </a>
-                    <ul id="report" class="sidebar-dropdown list-unstyled collapse"
-                         data-bs-parent="#sidebar">
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/Equipment" hx-target=".main" hx-swap="innerHTML">
-                                <i class="fa-solid fa-magnifying-glass"></i>Equipments
-                            </a>
-                         </li>
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/AddStocks" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-function-add-fill"></i>Add Stocks
-                            </a>
-                         </li>
-                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" hx-get="/InventoryRecord" hx-target=".main" hx-swap="innerHTML">
-                                <i class="ri-folder-chart-line"></i>Inventory Records
-                            </a>
-                         </li>
+                            <a href="{{route('TransactionList')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-list-view"></i>Transaction List</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('Payment')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-money-dollar-circle-fill"></i>Payment</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('TransactionRecord')}}" 
+                            class="sidebar-link"
+                            hx-boost="true"
+                            hx-push-url="true">
+                            <i class="ri-folder-history-fill"></i>Transaction Records</a>
+                        </li>
                     </ul>
                 </li>
             </ul> 
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link" hx-get="/logout" hx-target=".main" hx-swap="innerHTML">
+                <a href="#" class="sidebar-link">
                     <i class="ri-logout-box-line"></i>
                     <span>Logout</span>
                 </a>
@@ -320,47 +320,60 @@
             </div>
             <div class="border border-dark"></div>
             <div class="row mt-2">
-                <div class="card p-3 border border-dark">
+                <div class="col-md-8">
+                <div class="card p-3 ">
                     <h2>Dashboard</h2>
                     <p>Dashboard content</p>
                     <div class="border border-dark"></div>
                     <div class="row mt-4">
                         <div class="col-md-4">
-                            <div class="card p-3 border border-dark">
-                                <h3>Doctors</h3>
-                                <a href="#" hx-get="/DoctorList" hx-target=".main" hx-swap="innerHTML">
-                                    <p>Doctor contents</p>
-                                </a>
+                            <div class="card p-3">
+                                <span>Doctors</span>
+                                
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card p-3 border border-dark">
-                                <h3>Appointments</h3>
-                                <a href="#" hx-get="/appointmentlist" hx-target=".main" hx-swap="innerHTML">
-                                    <p>Appointment content</p>
-                                </a>
+                            <div class="card p-3 ">
+                                <span>Appointments</span>
+                                
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card p-3 border border-dark">
-                                <h3>Patients</h3>
-                                <a href="#" hx-get="/PatientList" hx-target=".main" hx-swap="innerHTML">
-                                    <p>Patients content</p>
-                                </a>
+                            <div class="card p-3 ">
+                                <span>Patients</span>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
+            
         </div>
     </div>
-</body>
-<script>
-    const toggleBtn = document.getElementById('toggle-btn');
-    const sidebar = document.getElementById('sidebar');
     
-    toggleBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('expand');
+</body>
+
+<script>
+    if (typeof toggleSidebar === 'undefined') {
+        function toggleSidebar() {
+            const toggleBtn = document.getElementById('toggle-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('expand');
+                });
+            }
+        }
+    }
+
+    // Initial binding
+    toggleSidebar();
+
+    // Rebind after HTMX updates
+    document.body.addEventListener('htmx:afterSwap', () => {
+        toggleSidebar();
     });
 </script>
 </html>
