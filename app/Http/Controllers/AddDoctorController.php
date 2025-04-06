@@ -3,22 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddDoctor;
+<<<<<<< HEAD
 use App\Models\DoctorAvailability;
+=======
+>>>>>>> 9ca211229af9b8a0fb97ed01c8718f3908d74174
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AddDoctorController extends Controller
 {
+<<<<<<< HEAD
     public function store(Request $request)
     {
         $request->validate([
             'file_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+=======
+    //
+    public function index(){
+
+    }
+
+    public function store(Request $request){
+        $request->validate([
+            'file_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+>>>>>>> 9ca211229af9b8a0fb97ed01c8718f3908d74174
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'age' => 'required|integer|min:1',
             'gender' => 'required|string',
             'contact' => 'required|string|max:15',
+<<<<<<< HEAD
             'email' => 'required|email|max:255|unique:add_doctors,email',
+=======
+            'email' => 'required|email|max:255',
+>>>>>>> 9ca211229af9b8a0fb97ed01c8718f3908d74174
             'marital' => 'nullable|string',
             'street' => 'nullable|string|max:255',
             'city' => 'nullable|string|max:255',
@@ -29,6 +47,7 @@ class AddDoctorController extends Controller
             'bio' => 'nullable|string',
         ]);
 
+<<<<<<< HEAD
         $doctorData = $request->only([
             'firstname', 'lastname', 'age', 'gender', 'contact', 'email',
             'marital', 'street', 'city', 'country', 'postal',
@@ -41,10 +60,16 @@ class AddDoctorController extends Controller
         }
 
         AddDoctor::create($doctorData);
+=======
+        AddDoctor::create($request->only([ 'firstname', 'lastname', 'age', 'gender', 'contact', 'email', 
+        'marital', 'street', 'city', 'country', 'postal', 
+        'specialization', 'qualification', 'bio']));
+>>>>>>> 9ca211229af9b8a0fb97ed01c8718f3908d74174
 
         return redirect()->route('DoctorList')->with('success', 'Doctor added successfully!');
     }
 
+<<<<<<< HEAD
     public function show()
     {
         $DoctorRecord = AddDoctor::all(); 
@@ -124,3 +149,29 @@ class AddDoctorController extends Controller
         return redirect()->route('DoctorRecord')->with('success', 'Doctor and associated availability deleted successfully!');
     }
 }
+=======
+    public function show(){
+
+    }
+
+    public function create(){
+
+    }
+    public function edit(){
+    
+    
+    
+    }
+
+    public function update(){
+
+    
+    
+    }
+    
+    public function destroy(){
+
+    }
+    
+}
+>>>>>>> 9ca211229af9b8a0fb97ed01c8718f3908d74174
